@@ -10,12 +10,16 @@ public class Funcionario {
     }
 
     public void exibirInformacoes() {
-        System.out.printf("\nFuncionario %s - Salário: %.2f",
+        System.out.printf("\nFuncionario %s - Salário: %.2f\n",
                 nome, salario);
     }
 
     public void reajustarSalario(double percentual) {
         salario += salario * (percentual / 100);
-        System.out.printf("\nNovo salario de %s é %.2f ", nome, salario);
+        System.out.printf("\nNovo salario de %s é %.2f \n", nome, salario);
+    }
+
+    public void adicionarBonus(double bonus) {
+        salario += bonus;
     }
 }

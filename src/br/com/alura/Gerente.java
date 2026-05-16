@@ -11,7 +11,8 @@ public class Gerente extends Funcionario {
         return bonus;
     }
 
-    public void setBonus(double bonus) {
+    public  void setBonus(double bonus) {
         this.bonus = bonus;
+        adicionarBonus(bonus);
     }
 }

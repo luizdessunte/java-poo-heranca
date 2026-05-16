@@ -14,6 +14,7 @@ public class Principal {
 
         int escolha = scanner.nextInt();
 
+        // O fluxo do programa é decidido de forma interativa.
         if (escolha == 1) {
             cadastrarGerente(scanner);
         } else if (escolha == 2) {
@@ -26,7 +27,7 @@ public class Principal {
     }
 
     private static void cadastrarGerente(Scanner scanner) {
-        scanner.nextLine(); // Limpa o buffer
+        scanner.nextLine(); // Limpa o buffer do enter
 
         System.out.println("\n=== Cadastro de Gerente ===");
         System.out.print("Digite o nome do gerente: ");
@@ -35,6 +36,7 @@ public class Principal {
         System.out.print("Digite o salário do gerente: ");
         double salario = scanner.nextDouble();
 
+        // Variável polimórfica: do tipo "Funcionario" recebendo uma instância "Gerente".
         Funcionario gerente = new Gerente(nome, salario);
         gerente.exibirInformacoes();
 
@@ -44,11 +46,23 @@ public class Principal {
 
         System.out.print("Digite o bônus do gerente: ");
         double bonus = scanner.nextDouble();
+        // Casting: transformando explicitamente para Gerente para acessar setBonus.
         ((Gerente) gerente).setBonus(bonus);
 
         System.out.printf("\nBônus definido: %.2f\n", bonus);
+        
         System.out.println("\n=== Informações Atualizadas ===\n");
         gerente.exibirInformacoes();
+        
+        // Chamada polimórfica de PLR: o método do Gerente é que vai executar.
+        gerente.calcularPLR();
+        
+        scanner.nextLine(); // Limpa o buffer
+        System.out.print("\nDigite o nome do projeto para aprovação: ");
+        String projeto = scanner.nextLine();
+        // Casting novamente para acessar o método exclusivo da interface Aprovador,
+        // que o Gerente implementa.
+        ((Gerente) gerente).aprovarProjeto(projeto);
     }
 
     private static void cadastrarDesenvolvedor(Scanner scanner) {
@@ -66,6 +80,7 @@ public class Principal {
         System.out.print("Digite a stack do desenvolvedor: ");
         String stack = scanner.nextLine();
 
+        // Criação polimórfica do Desenvolvedor
         Funcionario desenvolvedor = new Desenvolvedor(nome, salario, stack);
         desenvolvedor.exibirInformacoes();
 
@@ -74,6 +89,11 @@ public class Principal {
         desenvolvedor.reajustarSalario(percentual);
 
         System.out.printf("\nStack definida: %s\n", stack);
+        
+        System.out.println("\n=== Informações Atualizadas ===\n");
+        desenvolvedor.exibirInformacoes();
+        // Chamada do PLR específico do desenvolvedor (15%)
+        desenvolvedor.calcularPLR();
     }
 
-    }
+}

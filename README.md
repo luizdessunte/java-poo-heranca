@@ -1,29 +1,34 @@
-# Projeto Java: Exemplo de Herança e Polimorfismo
+# Projeto Java: Exemplo de Herança, Interfaces e Classes Abstratas
 
-Este projeto demonstra os conceitos de **Herança**, **Polimorfismo** e **Encapsulamento** (com uso de modificador `protected`) na Programação Orientada a Objetos (POO) utilizando a linguagem Java, com uma interface de linha de comando iterativa.
+Este projeto demonstra os conceitos fundamentais de **Programação Orientada a Objetos (POO)** utilizando a linguagem Java. Ele foca especificamente em **Herança**, **Polimorfismo**, **Classes Abstratas** e **Interfaces**, com uma interface de linha de comando iterativa.
 
 ## Estrutura do Projeto
 
-O objetivo é exemplificar como uma classe pode herdar atributos e métodos de outra e como o polimorfismo permite tratar objetos de subclasses de forma genérica. A estrutura é a seguinte:
+O objetivo é exemplificar a hierarquia de classes, obrigatoriedade de implementação de métodos e contratos através de interfaces. A estrutura é a seguinte:
 
-- **`Funcionario` (Superclasse):**
-  - Representa um funcionário genérico.
-  - Seus atributos `nome` e `salario` são agora `protected`, permitindo o acesso direto pelas subclasses.
-  - Contém métodos como `exibirInformacoes()`, `reajustarSalario()` e `adicionarBonus()`.
+- **`Funcionario` (Superclasse Abstrata):**
+  - Agora é uma **classe abstrata** (`abstract class`), o que significa que não pode ser instanciada diretamente.
+  - Define o método abstrato `calcularPLR()`, obrigando as subclasses a fornecerem sua própria implementação.
+  - Possui os atributos base (`nome` e `salario` como `protected`) e métodos concretos como `exibirInformacoes()`, `reajustarSalario()` e `adicionarBonus()`.
+
+- **`Aprovador` (Interface):**
+  - Define um contrato com o método `aprovarProjeto(String nomeProjeto)`. 
+  - Qualquer classe que assinar este contrato (implementar a interface) precisará obrigatoriamente fornecer o comportamento para esse método.
 
 - **`Gerente` (Subclasse):**
-  - Herda de `Funcionario`.
-  - Possui todos os atributos e métodos de `Funcionario` e adiciona um atributo específico: `bonus`.
-  - Sobrescreve (`@Override`) o método `exibirInformacoes()` para imprimir também o bônus, demonstrando **Polimorfismo**.
+  - Herda de `Funcionario` e implementa a interface `Aprovador`.
+  - Sobrescreve o método `calcularPLR()` (implementação obrigatória da superclasse abstrata).
+  - Implementa o método `aprovarProjeto(String nomeProjeto)` (obrigatório pelo contrato da interface `Aprovador`).
+  - Possui seu atributo específico `bonus` e sobrescreve `exibirInformacoes()`.
 
 - **`Desenvolvedor` (Subclasse):**
   - Herda de `Funcionario`.
+  - Sobrescreve o método `calcularPLR()` (implementação obrigatória da superclasse abstrata).
   - Adiciona um atributo específico: `stack` (ex: "Java", "Python", etc.).
-  - Também sobrescreve (`@Override`) o método `exibirInformacoes()` para imprimir a stack do desenvolvedor.
 
 - **`Principal`:**
-  - Demonstra o uso de **Polimorfismo** ao instanciar objetos `Gerente` e `Desenvolvedor` e referenciá-los pelo tipo mais genérico `Funcionario`. 
-  - Usa _casting_ (ex: `((Gerente) gerente)`) para acessar métodos específicos das subclasses quando necessário.
+  - Demonstra o uso dessas classes na prática.
+  - Usa _casting_ e variáveis polimórficas.
   - Contém um sistema de menu utilizando `Scanner` para entrada dinâmica de dados.
 
 ## Como Executar
@@ -32,4 +37,4 @@ O objetivo é exemplificar como uma classe pode herdar atributos e métodos de o
 3. Siga as instruções que aparecerão no console:
    - Escolha o tipo de funcionário (1 para Gerente, 2 para Desenvolvedor).
    - Digite as informações solicitadas.
-4. O console exibirá as informações formatadas especificamente para cada tipo de funcionário, evidenciando o polimorfismo na chamada de `exibirInformacoes()`.
+4. O console exibirá as informações formatadas, e agora o sistema se apoia numa base sólida e abstrata de regras de negócio.

@@ -15,4 +15,9 @@ public class Gerente extends Funcionario {
         this.bonus = bonus;
         adicionarBonus(bonus);
     }
+
+    @Override
+    public void exibirInformacoes() {
+        System.out.printf("Gerente: %s - Salário: %.2f - Bônus: %.2f\n", nome, salario, bonus);
+    }
 }

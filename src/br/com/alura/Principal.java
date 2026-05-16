@@ -35,7 +35,7 @@ public class Principal {
         System.out.print("Digite o salário do gerente: ");
         double salario = scanner.nextDouble();
 
-        Gerente gerente = new Gerente(nome, salario);
+        Funcionario gerente = new Gerente(nome, salario);
         gerente.exibirInformacoes();
 
         System.out.print("Digite o percentual de reajuste: ");
@@ -44,7 +44,7 @@ public class Principal {
 
         System.out.print("Digite o bônus do gerente: ");
         double bonus = scanner.nextDouble();
-        gerente.setBonus(bonus);
+        ((Gerente) gerente).setBonus(bonus);
 
         System.out.printf("\nBônus definido: %.2f\n", bonus);
         System.out.println("\n=== Informações Atualizadas ===\n");
@@ -66,7 +66,7 @@ public class Principal {
         System.out.print("Digite a stack do desenvolvedor: ");
         String stack = scanner.nextLine();
 
-        Desenvolvedor desenvolvedor = new Desenvolvedor(nome, salario, stack);
+        Funcionario desenvolvedor = new Desenvolvedor(nome, salario, stack);
         desenvolvedor.exibirInformacoes();
 
         System.out.print("\nDigite o percentual de reajuste: \n");

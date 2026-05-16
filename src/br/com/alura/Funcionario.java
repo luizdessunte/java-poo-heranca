@@ -1,8 +1,8 @@
 package br.com.alura;
 
 public class Funcionario {
-    private String nome;
-    private double salario;
+    protected String nome;
+    protected double salario;
 
     public Funcionario(String nome, double salario) {
         this.nome = nome;
@@ -10,7 +10,7 @@ public class Funcionario {
     }
 
     public void exibirInformacoes() {
-        System.out.printf("\nFuncionario %s - Salário: %.2f\n",
+        System.out.printf("Funcionário: %s - Salário: %.2f\n",
                 nome, salario);
     }
 
